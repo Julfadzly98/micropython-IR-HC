@@ -2,6 +2,29 @@ from machine import Pin, time_pulse_us
 import time
 import urequests
 
+def connect():
+    import network
+ 
+    ssid = "smartspacekk" 
+    password = "smartspace09" 
+ 
+    station = network.WLAN(network.STA_IF)
+ 
+    if station.isconnected() == True:
+        print("Already connected")
+        return
+ 
+    station.active(True)
+    station.connect(ssid, password)
+ 
+    while station.isconnected() == False:
+        pass
+ 
+    print("Connection successful")
+    print(station.ifconfig())
+
+
+
 # Ultrasonic sensor pins
 trig = Pin(18, Pin.OUT)
 echo = Pin(19, Pin.IN)
@@ -11,6 +34,8 @@ ir_sensor = Pin(21, Pin.IN)
 
 # Buzzer pin
 buzzer = Pin(22, Pin.OUT)
+
+
 
 # Telegram Bot Token and Chat ID
 TELEGRAM_BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'
