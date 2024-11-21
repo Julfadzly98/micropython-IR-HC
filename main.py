@@ -73,6 +73,7 @@ def main():
     while True:
         # Measure distance using the ultrasonic sensor
         distance = measure_distance()
+        #https://docs.google.com/forms/d/e/1FAIpQLSeKT-7XwFW3nxrGBhprCks2jXZWOCj-UAm2gq1-jFEOyXSLLA/viewform?usp=pp_url&entry.108654085=1
         print("Ultrasonic Sensor Distance: {:.2f} cm".format(distance))
 
         # Send distance to Telegram
@@ -87,6 +88,16 @@ def main():
 
         # Wait for a short time before the next measurement
         time.sleep(5)  # Send data every 5 seconds
+
+
+
+        h = {'content-type' : 'application/x-www-form-urlencoded'}
+        form_url = 'https://docs.google.com/forms/d/e/1FAIpQLSeKT-7XwFW3nxrGBhprCks2jXZWOCj-UAm2gq1-jFEOyXSLLA/formResponse?usp=pp_url&'
+        form_data = 'entry.108654085=' + str(distance)
+        r = urequests.post(form_url, data=form_data, headers=h)
+        r.status_code
+        r.close()
+        print("check google form")
 
 if __name__ == "__main__":
     main()
