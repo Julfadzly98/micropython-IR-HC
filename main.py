@@ -98,6 +98,7 @@ def main():
         r.status_code
         r.close()
         print("check google form")
+        time.sleep(10)
 
 if __name__ == "__main__":
     main()
